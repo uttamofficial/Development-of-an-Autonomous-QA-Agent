@@ -1,0 +1,28 @@
+# FastAPI backend (compatible with Pydantic v2)
+fastapi==0.110.2
+uvicorn[standard]==0.29.0
+
+# Streamlit frontend
+streamlit==1.33.0
+requests==2.31.0
+
+# Vector database (no opentelemetry conflicts)
+chromadb==0.4.22
+
+# Lightweight embedding model (no PyTorch)
+flagembedding==1.2.10
+
+# HTML & PDF parsing
+beautifulsoup4==4.12.3
+lxml==4.9.4
+pymupdf==1.24.3
+
+# Selenium
+selenium==4.15.2
+
+# Pydantic v2 + settings
+pydantic==2.7.1
+pydantic-settings==2.2.1
+
+# Environment variables
+python-dotenv==1.0.1

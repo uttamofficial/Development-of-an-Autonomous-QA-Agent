@@ -1,0 +1,181 @@
+UI/UX Design Guide - E-Shop Checkout
+=====================================
+
+This document outlines the user interface and user experience guidelines for the checkout system.
+
+FORM VALIDATION
+---------------
+
+Error Message Display
+- All form validation errors MUST be displayed in red text
+- Error messages appear directly below the invalid input field
+- Error messages use the CSS class "error-message"
+- Error messages are hidden by default and shown when validation fails
+- Red color code: #FF0000 or "red"
+
+Error Message Behavior
+- Errors appear when user leaves a field (on blur event)
+- Errors disappear when field becomes valid
+- Invalid input fields should have red border (border-color: red)
+- Valid input fields should have default border color (#ddd)
+
+Required Field Indicators
+- Required fields are marked with an asterisk (*) in the label
+- Required fields must show error if left empty
+- Error message text: "[Field Name] is required"
+
+Email Validation
+- Email field must validate format (contains @ and valid domain)
+- Error message for invalid email: "Please enter a valid email address"
+- Error message for empty email: "Email is required"
+
+BUTTON STYLING
+--------------
+
+Pay Now Button
+- The "Pay Now" button MUST be green
+- Green color code: #4CAF50
+- Hover color: #45a049
+- Button text: "Pay Now"
+- Button should be prominent and clearly visible
+- Button is disabled if form is invalid
+- Disabled button color: #cccccc
+
+Add to Cart Buttons
+- Add to Cart buttons are blue
+- Blue color code: #2196F3
+- Hover color: #1976D2
+- Button text: "Add to Cart"
+
+Button States
+- Buttons should have hover effects (darker shade on hover)
+- Disabled buttons should be grayed out
+- Buttons should have rounded corners (border-radius: 4px)
+- Buttons should have adequate padding for clickability
+
+SUCCESS MESSAGES
+----------------
+
+Payment Success
+- Success message appears after successful form submission
+- Message text: "Payment Successful! 🎉"
+- Success message background: #d4edda (light green)
+- Success message text color: #155724 (dark green)
+- Success message is centered and prominently displayed
+- Success message appears below the Pay Now button
+
+Discount Code Success
+- Valid discount codes show success message in green
+- Message format: "Discount [X]% applied!"
+- Success message appears below discount code input
+
+LAYOUT AND SPACING
+------------------
+
+Form Layout
+- Form fields should be clearly grouped
+- Adequate spacing between form sections
+- Labels appear above input fields
+- Input fields have consistent width (max-width: 500px)
+
+Cart Display
+- Cart items are displayed in a clear list format
+- Each cart item shows: product name, price, quantity input, subtotal
+- Total price is displayed prominently at the bottom
+- Total price is in green color (#4CAF50) and bold
+
+Section Organization
+- Products section at the top
+- Cart summary below products
+- Discount code section below cart
+- User details form below discount section
+- Shipping and payment options within the form
+
+COLOR CONSISTENCY
+-----------------
+
+Primary Colors
+- Green (#4CAF50): Success states, Pay Now button, total price
+- Blue (#2196F3): Add to Cart buttons, primary actions
+- Red (#FF0000): Error messages, invalid states
+- Gray (#f5f5f5): Background, disabled states
+
+Text Colors
+- Primary text: #333 (dark gray)
+- Secondary text: Standard black
+- Error text: Red
+- Success text: Dark green (#155724)
+
+INTERACTIVE ELEMENTS
+--------------------
+
+Input Fields
+- Input fields have border: 1px solid #ddd
+- Border radius: 4px
+- Padding: 10px
+- Font size: 14px
+- Focus state should be visually distinct
+
+Radio Buttons
+- Radio buttons are clearly labeled
+- Labels are clickable
+- Selected state is clearly visible
+- Radio button groups are visually grouped
+
+Quantity Inputs
+- Quantity inputs are small and centered
+- Width: 60px
+- Text alignment: center
+- Minimum value: 0 (removes item if set to 0)
+
+USER FEEDBACK
+-------------
+
+Loading States
+- Spinner or loading indicator during processing
+- Button text changes to indicate processing state
+
+Visual Feedback
+- Hover effects on all interactive elements
+- Clear indication of selected options (radio buttons)
+- Immediate feedback on form validation
+- Clear success/error state indicators
+
+Accessibility
+- All form fields have proper labels
+- Error messages are associated with their fields
+- Buttons have descriptive text
+- Color is not the only indicator (text labels also used)
+
+RESPONSIVE DESIGN
+----------------
+
+Layout
+- Maximum width: 1200px
+- Centered layout with auto margins
+- Padding: 20px on sides
+- Responsive to different screen sizes
+
+Form Elements
+- Input fields scale appropriately
+- Buttons maintain minimum clickable size
+- Text remains readable at all sizes
+
+CONSISTENCY RULES
+-----------------
+
+Terminology
+- Use "Pay Now" consistently (not "Submit" or "Checkout")
+- Use "Add to Cart" consistently
+- Use "Discount Code" (not "Coupon Code" or "Promo Code")
+
+Error Handling
+- All errors follow the same pattern: red text below field
+- Error messages are clear and actionable
+- No technical jargon in error messages
+
+Visual Hierarchy
+- Headings are clearly distinguished
+- Important information (total price) is emphasized
+- Success messages are prominent but not intrusive
+

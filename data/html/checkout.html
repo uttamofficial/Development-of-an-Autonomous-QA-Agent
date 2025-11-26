@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Shop Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        
+        .products-section {
+            margin-bottom: 30px;
+        }
+        
+        .product {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-info {
+            flex: 1;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            color: #4CAF50;
+            font-size: 16px;
+        }
+        
+        .add-to-cart-btn {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: #1976D2;
+        }
+        
+        .cart-section {
+            border: 2px solid #ddd;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            padding: 5px;
+            text-align: center;
+        }
+        
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-top: 15px;
+            text-align: right;
+        }
+        
+        .discount-section {
+            margin-bottom: 30px;
+        }
+        
+        .discount-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .radio-group {
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            margin-bottom: 10px;
+        }
+        
+        .radio-option input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        .pay-now-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            margin-top: 20px;
+        }
+        
+        .pay-now-button:hover {
+            background-color: #45a049;
+        }
+        
+        .pay-now-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛒 E-Shop Checkout</h1>
+        
+        <!-- Products Section -->
+        <div class="products-section">
+            <h2>Products</h2>
+            
+            <div class="product" id="product-1">
+                <div class="product-info">
+                    <div class="product-name">Wireless Headphones</div>
+                    <div class="product-price">$79.99</div>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('product-1', 'Wireless Headphones', 79.99)">Add to Cart</button>
+            </div>
+            
+            <div class="product" id="product-2">
+                <div class="product-info">
+                    <div class="product-name">Smart Watch</div>
+                    <div class="product-price">$199.99</div>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('product-2', 'Smart Watch', 199.99)">Add to Cart</button>
+            </div>
+            
+            <div class="product" id="product-3">
+                <div class="product-info">
+                    <div class="product-name">USB-C Cable</div>
+                    <div class="product-price">$14.99</div>
+                </div>
+                <button class="add-to-cart-btn" onclick="addToCart('product-3', 'USB-C Cable', 14.99)">Add to Cart</button>
+            </div>
+        </div>
+        
+        <!-- Cart Summary Section -->
+        <div class="cart-section">
+            <h2>Cart Summary</h2>
+            <div id="cart-items">
+                <p>Your cart is empty. Add items to get started!</p>
+            </div>
+            <div class="total-price" id="total-price">Total: $0.00</div>
+        </div>
+        
+        <!-- Discount Code Section -->
+        <div class="discount-section">
+            <h2>Discount Code</h2>
+            <input 
+                type="text" 
+                id="discount-code" 
+                name="discount_code" 
+                class="discount-input" 
+                placeholder="Enter discount code (e.g., SAVE10)"
+            >
+            <button class="add-to-cart-btn" onclick="applyDiscount()" style="margin-left: 10px;">Apply Discount</button>
+            <div id="discount-message" class="error-message"></div>
+        </div>
+        
+        <!-- User Details Form -->
+        <div class="form-section">
+            <h2>User Details</h2>
+            <form id="checkout-form" onsubmit="return handleSubmit(event)">
+                <div class="form-group">
+                    <label for="customer-name">Full Name *</label>
+                    <input 
+                        type="text" 
+                        id="customer-name" 
+                        name="customer_name" 
+                        required
+                        onblur="validateName()"
+                    >
+                    <div id="name-error" class="error-message">Name is required</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-email">Email Address *</label>
+                    <input 
+                        type="email" 
+                        id="customer-email" 
+                        name="customer_email" 
+                        required
+                        onblur="validateEmail()"
+                    >
+                    <div id="email-error" class="error-message">Please enter a valid email address</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="customer-address">Shipping Address *</label>
+                    <textarea 
+                        id="customer-address" 
+                        name="customer_address" 
+                        required
+                        onblur="validateAddress()"
+                    ></textarea>
+                    <div id="address-error" class="error-message">Address is required</div>
+                </div>
+                
+                <!-- Shipping Method -->
+                <div class="form-group">
+                    <label>Shipping Method *</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input 
+                                type="radio" 
+                                id="shipping-standard" 
+                                name="shipping_method" 
+                                value="standard" 
+                                checked
+                                required
+                            >
+                            <label for="shipping-standard" style="display: inline; font-weight: normal;">Standard Shipping (5-7 business days)</label>
+                        </div>
+                        <div class="radio-option">
+                            <input 
+                                type="radio" 
+                                id="shipping-express" 
+                                name="shipping_method" 
+                                value="express"
+                            >
+                            <label for="shipping-express" style="display: inline; font-weight: normal;">Express Shipping (2-3 business days)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Method -->
+                <div class="form-group">
+                    <label>Payment Method *</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input 
+                                type="radio" 
+                                id="payment-credit-card" 
+                                name="payment_method" 
+                                value="credit_card" 
+                                checked
+                                required
+                            >
+                            <label for="payment-credit-card" style="display: inline; font-weight: normal;">Credit Card</label>
+                        </div>
+                        <div class="radio-option">
+                            <input 
+                                type="radio" 
+                                id="payment-paypal" 
+                                name="payment_method" 
+                                value="paypal"
+                            >
+                            <label for="payment-paypal" style="display: inline; font-weight: normal;">PayPal</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pay Now Button -->
+                <button type="submit" id="pay-now-button" class="pay-now-button">Pay Now</button>
+                
+                <!-- Success Message -->
+                <div id="success-message" class="success-message">Payment Successful! 🎉</div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        let cart = [];
+        let discountApplied = false;
+        let discountPercent = 0;
+        
+        function addToCart(productId, productName, price) {
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            updateCartDisplay();
+        }
+        
+        function updateCartDisplay() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            const totalPriceDiv = document.getElementById('total-price');
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p>Your cart is empty. Add items to get started!</p>';
+                totalPriceDiv.textContent = 'Total: $0.00';
+                return;
+            }
+            
+            let html = '';
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong> - $${item.price.toFixed(2)} each
+                        </div>
+                        <div>
+                            <input 
+                                type="number" 
+                                class="quantity-input" 
+                                id="quantity-${item.id}" 
+                                name="quantity_${item.id}"
+                                min="0" 
+                                value="${item.quantity}"
+                                onchange="updateQuantity('${item.id}', this.value)"
+                            >
+                        </div>
+                        <div>$${itemTotal.toFixed(2)}</div>
+                    </div>
+                `;
+            });
+            
+            cartItemsDiv.innerHTML = html;
+            updateTotal();
+        }
+        
+        function updateQuantity(productId, newQuantity) {
+            const quantity = parseInt(newQuantity);
+            const item = cart.find(item => item.id === productId);
+            
+            if (item) {
+                if (quantity <= 0) {
+                    cart = cart.filter(item => item.id !== productId);
+                } else {
+                    item.quantity = quantity;
+                }
+                updateCartDisplay();
+            }
+        }
+        
+        function updateTotal() {
+            let total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            if (discountApplied) {
+                total = total * (1 - discountPercent / 100);
+            }
+            
+            document.getElementById('total-price').textContent = `Total: $${total.toFixed(2)}`;
+        }
+        
+        function applyDiscount() {
+            const discountCode = document.getElementById('discount-code').value.trim();
+            const discountMessage = document.getElementById('discount-message');
+            
+            // Valid discount codes
+            const validCodes = {
+                'SAVE10': 10,
+                'SAVE20': 20,
+                'WELCOME': 15
+            };
+            
+            if (discountCode in validCodes) {
+                discountApplied = true;
+                discountPercent = validCodes[discountCode];
+                discountMessage.textContent = `Discount ${discountPercent}% applied!`;
+                discountMessage.style.color = '#4CAF50';
+                discountMessage.classList.add('show');
+                updateTotal();
+            } else if (discountCode === '') {
+                discountApplied = false;
+                discountPercent = 0;
+                discountMessage.textContent = '';
+                discountMessage.classList.remove('show');
+                updateTotal();
+            } else {
+                discountMessage.textContent = 'Invalid discount code';
+                discountMessage.style.color = 'red';
+                discountMessage.classList.add('show');
+            }
+        }
+        
+        function validateName() {
+            const nameInput = document.getElementById('customer-name');
+            const nameError = document.getElementById('name-error');
+            
+            if (nameInput.value.trim() === '') {
+                nameError.textContent = 'Name is required';
+                nameError.classList.add('show');
+                nameInput.style.borderColor = 'red';
+                return false;
+            } else {
+                nameError.classList.remove('show');
+                nameInput.style.borderColor = '#ddd';
+                return true;
+            }
+        }
+        
+        function validateEmail() {
+            const emailInput = document.getElementById('customer-email');
+            const emailError = document.getElementById('email-error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (emailInput.value.trim() === '') {
+                emailError.textContent = 'Email is required';
+                emailError.classList.add('show');
+                emailInput.style.borderColor = 'red';
+                return false;
+            } else if (!emailRegex.test(emailInput.value)) {
+                emailError.textContent = 'Please enter a valid email address';
+                emailError.classList.add('show');
+                emailInput.style.borderColor = 'red';
+                return false;
+            } else {
+                emailError.classList.remove('show');
+                emailInput.style.borderColor = '#ddd';
+                return true;
+            }
+        }
+        
+        function validateAddress() {
+            const addressInput = document.getElementById('customer-address');
+            const addressError = document.getElementById('address-error');
+            
+            if (addressInput.value.trim() === '') {
+                addressError.textContent = 'Address is required';
+                addressError.classList.add('show');
+                addressInput.style.borderColor = 'red';
+                return false;
+            } else {
+                addressError.classList.remove('show');
+                addressInput.style.borderColor = '#ddd';
+                return true;
+            }
+        }
+        
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Validate all fields
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isAddressValid = validateAddress();
+            
+            // Check if cart is not empty
+            if (cart.length === 0) {
+                alert('Please add items to your cart before proceeding.');
+                return false;
+            }
+            
+            // If all validations pass
+            if (isNameValid && isEmailValid && isAddressValid) {
+                // Show success message
+                document.getElementById('success-message').classList.add('show');
+                
+                // Scroll to success message
+                document.getElementById('success-message').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Reset form after 3 seconds (optional)
+                // setTimeout(() => {
+                //     document.getElementById('checkout-form').reset();
+                //     cart = [];
+                //     discountApplied = false;
+                //     updateCartDisplay();
+                //     document.getElementById('success-message').classList.remove('show');
+                // }, 3000);
+                
+                return false; // Prevent form submission
+            } else {
+                return false;
+            }
+        }
+        
+        // Initialize cart display
+        updateCartDisplay();
+    </script>
+</body>
+</html>
+
